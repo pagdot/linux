@@ -2002,8 +2002,9 @@ COMPAT_SYSCALL_DEFINE3(io_submit, compat_aio_context_t, ctx_id,
  *	into the completion queue and 0 is returned.  May fail with
  *	-EFAULT if any of the data structures pointed to are invalid.
  *	May fail with -EINVAL if aio_context specified by ctx_id is
- *	invalid.  May fail with -EAGAIN if the iocb specified was not
- *	cancelled.  Will fail with -ENOSYS if not implemented.
+ *	invalid or if iocb specified was not found in the queue. May fail
+ *	with -EAGAIN if the iocb specified was not cancelled.  Will fail
+ *	with -ENOSYS if not implemented.
  */
 SYSCALL_DEFINE3(io_cancel, aio_context_t, ctx_id, struct iocb __user *, iocb,
 		struct io_event __user *, result)
